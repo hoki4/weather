@@ -1,0 +1,62 @@
+/* Skeleton loading animation */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.skeleton {
+  display: inline-block;
+  background: var(--muted);
+  border-radius: 6px;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton--text {
+  width: 120px;
+  height: 1em;
+}
+
+.skeleton--short {
+  width: 60px;
+}
+
+.skeleton--icon {
+  width: 74px;
+  height: 74px;
+  border-radius: 12px;
+}
+
+.skeleton--icon-sm {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+}
+
+.forecast-day--skeleton {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: 12px 10px;
+}
+
+/* Hide skeletons when data is loaded */
+.weather--loaded .skeleton {
+  display: none;
+}
+
+.weather--loaded .forecast-day--skeleton {
+  display: none;
+}
+
+/* Loading state for the whole app */
+.weather--loading {
+  pointer-events: none;
+}
+
+.weather--loading .search__input {
+  opacity: 0.6;
+}
