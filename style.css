@@ -20,6 +20,25 @@
   --focus: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
+html[data-theme="dark"] {
+  --bg-0: #0b1730;
+  --bg-1: #081226;
+
+  --card: rgba(10, 18, 40, 0.7);
+  --stroke: rgba(255, 255, 255, 0.08);
+
+  --text: rgba(235, 245, 255, 0.92);
+  --muted: rgba(235, 245, 255, 0.6);
+
+  --accent: #60a5fa;
+
+  --shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+
+  --icon-cloud: rgba(140, 190, 255, 0.22);
+  --icon-rain: rgba(140, 190, 255, 0.55);
+  --icon-accent: #c084fc;
+}
+
 *,
 *::before,
 *::after {
@@ -56,4 +75,79 @@ a {
   display: grid;
   grid-template-rows: auto auto auto auto;
   gap: 18px;
+}
+
+.weather__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.weather__title {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.weather__actions {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.weather__icon-link {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+
+.weather__icon {
+  opacity: 0.9;
+}
+
+.theme-switch {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-switch__track {
+  width: 48px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  display: grid;
+  align-items: center;
+  padding: 3px;
+}
+
+.theme-switch__thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fde68a, #f59e0b);
+  transform: translateX(0);
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+html[data-theme="dark"] .theme-switch__thumb {
+  background: linear-gradient(180deg, #93c5fd, #1d4ed8);
+  transform: translateX(22px);
+}
+
+.theme-switch:focus-visible .theme-switch__track {
+  outline: none;
+  box-shadow: var(--shadow), var(--focus);
 }
