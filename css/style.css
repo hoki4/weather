@@ -490,6 +490,6 @@ html[data-theme="dark"] .theme-switch__thumb {
     margin: 0;
 }
 
-.meta>.meta__row {
+.meta > .meta__row {
     grid-template-columns: auto auto 1fr auto auto;
 }
