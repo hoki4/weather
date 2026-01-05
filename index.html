@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Weather</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/skeleton.css">
 </head>
 
 <body class="page">
@@ -38,12 +39,12 @@
             </svg>
           </span>
 
-          <input class="search__input" type="search" name="q" placeholder="paris" aria-label="City">
+          <input class="search__input" type="search" name="q" placeholder="Search city..." aria-label="City">
         </label>
       </form>
     </section>
 
-    <section class="card weather-card" aria-label="Текущая погода">
+    <section class="card weather-card" aria-label="Текущая погода" data-weather-card>
       <header class="card__header">
         <h2 class="card__title">Current Weather</h2>
 
@@ -58,37 +59,37 @@
 
       <div class="weather-card__grid">
         <div class="weather-card__main">
-          <p class="weather-card__city" data-city>Paris</p>
+          <p class="weather-card__city" data-city>
+            <span class="skeleton skeleton--text"></span>
+          </p>
 
           <div class="weather-card__temp">
             <div class="weather-card__temp-icon" aria-hidden="true">
-              <svg width="74" height="74" viewBox="0 0 96 96" aria-hidden="true">
-                <path fill="var(--icon-cloud)"
-                  d="M35 69h36a18 18 0 0 0 2-36A23 23 0 0 0 28 36a15 15 0 0 0 7 33Z" />
-                <path fill="var(--icon-accent)" d="M46 70l-7 14h11l-6 12l18-20H51l6-6H46Z" />
-              </svg>
+              <span class="skeleton skeleton--icon"></span>
             </div>
 
             <p class="weather-card__temp-value" aria-label="Temperature">
-              <output data-temp>24</output><span class="weather-card__degree" aria-hidden="true">°</span>
+              <output data-temp>—</output><span class="weather-card__degree" aria-hidden="true">°</span>
             </p>
           </div>
 
-          <p class="weather-card__desc" data-desc>thunderstorm</p>
+          <p class="weather-card__desc" data-desc>
+            <span class="skeleton skeleton--text skeleton--short"></span>
+          </p>
         </div>
 
         <div class="weather-card__meta">
           <div class="meta">
             <p class="meta__title">
-              Feels like <output data-feels-like>24</output><span aria-hidden="true">°</span>
+              Feels like <output data-feels-like>—</output><span aria-hidden="true">°</span>
             </p>
 
             <div class="meta__row" aria-label="Min and max temperature">
               <span class="meta__icon" aria-hidden="true">↑</span>
-              <span class="meta__label" data-max>26°</span>
+              <span class="meta__label" data-max>—</span>
               <span class="meta__spacer" aria-hidden="true"></span>
               <span class="meta__icon" aria-hidden="true">↓</span>
-              <span class="meta__label" data-min>23°</span>
+              <span class="meta__label" data-min>—</span>
             </div>
 
             <dl class="meta__list" aria-label="Weather details">
@@ -99,7 +100,7 @@
                   </svg>
                 </span>
                 <dt class="meta__name">Humidity</dt>
-                <dd class="meta__value" data-humidity>73%</dd>
+                <dd class="meta__value" data-humidity>—</dd>
               </div>
 
               <div class="meta__row">
@@ -110,7 +111,7 @@
                   </svg>
                 </span>
                 <dt class="meta__name">Wind</dt>
-                <dd class="meta__value" data-wind>18kph</dd>
+                <dd class="meta__value" data-wind>—</dd>
               </div>
 
               <div class="meta__row">
@@ -121,7 +122,7 @@
                   </svg>
                 </span>
                 <dt class="meta__name">Pressure</dt>
-                <dd class="meta__value" data-pressure>1014hPa</dd>
+                <dd class="meta__value" data-pressure>—</dd>
               </div>
             </dl>
           </div>
@@ -129,106 +130,54 @@
       </div>
     </section>
 
-    <section class="card forecast" aria-label="Прогноз на неделю">
+    <section class="card forecast" aria-label="Прогноз на неделю" data-forecast-card>
       <header class="card__header">
         <h2 class="card__title">Extended Forecast</h2>
       </header>
 
       <div class="forecast__grid" data-forecast>
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Sat</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 60h36a18 18 0 0 0 2-36A23 23 0 0 0 28 27a15 15 0 0 0 7 33Z" />
-              <path fill="var(--icon-rain)"
-                d="M33 70l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Rain</p>
-          <p class="forecast-day__range"><span>24°</span>/<span class="forecast-day__muted">21°</span></p>
+        <!-- Скелетоны для прогноза -->
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
-
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Sun</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 60h36a18 18 0 0 0 2-36A23 23 0 0 0 28 27a15 15 0 0 0 7 33Z" />
-              <path fill="var(--icon-rain)"
-                d="M33 70l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Rain</p>
-          <p class="forecast-day__range"><span>29°</span>/<span class="forecast-day__muted">20°</span></p>
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
-
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Mon</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 60h36a18 18 0 0 0 2-36A23 23 0 0 0 28 27a15 15 0 0 0 7 33Z" />
-              <path fill="var(--icon-rain)"
-                d="M33 70l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Rain</p>
-          <p class="forecast-day__range"><span>30°</span>/<span class="forecast-day__muted">21°</span></p>
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
-
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Tue</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 60h36a18 18 0 0 0 2-36A23 23 0 0 0 28 27a15 15 0 0 0 7 33Z" />
-              <path fill="var(--icon-rain)"
-                d="M33 70l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Rain</p>
-          <p class="forecast-day__range"><span>26°</span>/<span class="forecast-day__muted">19°</span></p>
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
-
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Wed</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 60h36a18 18 0 0 0 2-36A23 23 0 0 0 28 27a15 15 0 0 0 7 33Z" />
-              <path fill="var(--icon-rain)"
-                d="M33 70l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Rain</p>
-          <p class="forecast-day__range"><span>26°</span>/<span class="forecast-day__muted">19°</span></p>
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
-
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Thu</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 62h36a18 18 0 0 0 2-36A23 23 0 0 0 28 29a15 15 0 0 0 7 33Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Clouds</p>
-          <p class="forecast-day__range"><span>28°</span>/<span class="forecast-day__muted">19°</span></p>
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
-
-        <article class="forecast-day">
-          <h3 class="forecast-day__name">Fri</h3>
-          <div class="forecast-day__icon" aria-hidden="true">
-            <svg width="46" height="46" viewBox="0 0 96 96" aria-hidden="true">
-              <path fill="var(--icon-cloud)"
-                d="M35 60h36a18 18 0 0 0 2-36A23 23 0 0 0 28 27a15 15 0 0 0 7 33Z" />
-              <path fill="var(--icon-rain)"
-                d="M33 70l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Zm18 0l-4 10h6l4-10h-6Z" />
-            </svg>
-          </div>
-          <p class="forecast-day__desc">Rain</p>
-          <p class="forecast-day__range"><span>28°</span>/<span class="forecast-day__muted">20°</span></p>
+        <article class="forecast-day forecast-day--skeleton">
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--icon-sm"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
+          <span class="skeleton skeleton--text skeleton--short"></span>
         </article>
       </div>
     </section>
