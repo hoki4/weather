@@ -1,0 +1,16 @@
+export const dom = {
+  city: document.querySelector('[data-city]'),
+  temp: document.querySelector('[data-temp]'),
+  desc: document.querySelector('[data-desc]'),
+  feelsLike: document.querySelector('[data-feels-like]'),
+  max: document.querySelector('[data-max]'),
+  min: document.querySelector('[data-min]'),
+  humidity: document.querySelector('[data-humidity]'),
+  wind: document.querySelector('[data-wind]'),
+  pressure: document.querySelector('[data-pressure]'),
+  forecast: document.querySelector('[data-forecast]'),
+  tempIcon: document.querySelector('.weather-card__temp-icon'),
+  searchForm: document.querySelector('[data-search-form]'),
+  unitToggle: document.querySelector('[data-unit-toggle]'),
+  themeToggle: document.querySelector('[data-theme-toggle]'),
+};
