@@ -1,23 +1,68 @@
-import { getCoordsByName } from './geo.mjs';
-import { getWeatherByCoords } from './weather.mjs';
+import { getCoordsByName, getBrowserLocation } from './geo.mjs';
+import { getAllWeather } from './weather.mjs';
+import { renderCurrent, renderForecast, showLoading, hideLoading } from './render.mjs';
+import { dom } from './dom.mjs';
 
-const searchForm = document.querySelector('.search__form');
-const weatherCardCity = document.querySelector('.weather-card__city');
-const tempElement = document.querySelector('.weather-card__temp-value > output');
-const tempMinElement = document.querySelector('[data-min]');
-const tempMaxElement = document.querySelector('[data-max]');
+const DEFAULT_CITY = 'Paris';
+
+// Загрузить погоду по координатам
+async function loadByCoords(coords, cityName = null) {
+  showLoading();
+  
+  try {
+    const { weather, forecast } = await getAllWeather(coords);
+    renderCurrent(weather, cityName);
+    renderForecast(forecast);
+  } finally {
+    hideLoading();
+  }
+}
+
+// Загрузить погоду по названию города
+async function loadByCity(city) {
+  showLoading();
+  
+  try {
+    const { coords, title_en, title_origin } = await getCoordsByName(city);
+    const displayName = title_origin !== title_en
+      ? `${title_en} (${title_origin})`
+      : title_en;
+
+    const { weather, forecast } = await getAllWeather(coords);
+    renderCurrent(weather, displayName);
+    renderForecast(forecast);
+  } finally {
+    hideLoading();
+  }
+}
+
+// Начальная загрузка — сначала геолокация, потом фоллбэк
+async function loadInitial() {
+  try {
+    const coords = await getBrowserLocation();
+    await loadByCoords(coords);
+  } catch (err) {
+    console.log('Геолокация недоступна:', err.message);
+    await loadByCity(DEFAULT_CITY);
+  }
+}
+
+// Обработчик поиска
+function handleSearch(evt) {
+  evt.preventDefault();
+  const city = evt.currentTarget.q.value.trim();
+
+  if (city) {
+    loadByCity(city).catch((err) => {
+      console.error(err);
+      alert('Город не найден');
+    });
+  }
+}
 
 function initSearch() {
-    searchForm.addEventListener('submit', async (evt) => {
-        evt.preventDefault();
-        const { coords, title_en, title_origin } = await getCoordsByName(evt.currentTarget.q.value);
-        const data = await getWeatherByCoords(coords);
-
-        weatherCardCity.textContent = `${title_en} (${title_origin})`;
-        tempElement.textContent = data.main.temp;
-        tempMinElement.textContent = data.main.temp_min;
-        tempMaxElement.textContent = data.main.temp_max;
-    });
+  dom.searchForm?.addEventListener('submit', handleSearch);
+  loadInitial();
 }
 
 export { initSearch };
